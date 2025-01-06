@@ -1,13 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import { Building2, Calendar, Target, AlertTriangle, TrendingUp, Users, Clock } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  Building2,
+  Calendar,
+  Target,
+  AlertTriangle,
+  TrendingUp,
+  Users,
+  Clock,
+} from "lucide-react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 import { Card, CardHeader, CardContent, Progress } from "./shared/Card";
 
 const mockVisitData = [
   { month: "Jan", visits: 65 },
   { month: "Feb", visits: 75 },
   { month: "Mar", visits: 85 },
-  { month: "Apr", visits: 45 }
+  { month: "Apr", visits: 45 },
 ];
 
 export default function Dashboard() {
@@ -19,7 +35,9 @@ export default function Dashboard() {
       <div className="bg-white p-6 rounded-lg shadow-sm">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard Vétérinaire</h1>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Dashboard Vétérinaire
+            </h1>
             <div className="mt-2 flex items-center space-x-4">
               <div className="flex items-center">
                 <Users className="h-5 w-5 text-blue-500 mr-2" />
@@ -27,13 +45,17 @@ export default function Dashboard() {
               </div>
               <div className="flex items-center">
                 <Building2 className="h-5 w-5 text-green-500 mr-2" />
-                <span className="text-gray-600 font-medium">Territoire: FR-AH-BU-PV-VI3-4</span>
+                <span className="text-gray-600 font-medium">
+                  Territoire: FR-AH-BU-PV-VI3-4
+                </span>
               </div>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <Clock className="h-5 w-5 text-gray-500" />
-            <span className="text-sm text-gray-600">Dernière mise à jour: Aujourd'hui 14:30</span>
+            <span className="text-sm text-gray-600">
+              Dernière mise à jour: Aujourd'hui 14:30
+            </span>
           </div>
         </div>
         <div className="flex space-x-4">
@@ -50,7 +72,9 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card onClick={() => navigate("/interactions")}>
           <CardHeader className="flex flex-row items-center justify-between">
-            <div className="text-sm font-medium text-gray-500">Intéraction par Comptes</div>
+            <div className="text-sm font-medium text-gray-500">
+              Intéraction par Comptes
+            </div>
             <Building2 className="h-5 w-5 text-blue-500" />
           </CardHeader>
           <CardContent>
@@ -58,7 +82,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card onClick={() => navigate("/visites")}>
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="text-sm font-medium text-gray-500">Visites</div>
             <Calendar className="h-5 w-5 text-green-500" />
@@ -74,7 +98,9 @@ export default function Dashboard() {
 
         <Card onClick={() => navigate("/objectifs")}>
           <CardHeader className="flex flex-row items-center justify-between">
-            <div className="text-sm font-medium text-gray-500">Objectif Métier 2</div>
+            <div className="text-sm font-medium text-gray-500">
+              Objectif Métier 2
+            </div>
             <Target className="h-5 w-5 text-purple-500" />
           </CardHeader>
           <CardContent>
@@ -84,7 +110,9 @@ export default function Dashboard() {
 
         <Card className="bg-red-50">
           <CardHeader className="flex flex-row items-center justify-between">
-            <div className="text-sm font-medium text-red-600">Visites Prioritaires</div>
+            <div className="text-sm font-medium text-red-600">
+              Visites Prioritaires
+            </div>
             <AlertTriangle className="h-5 w-5 text-red-500" />
           </CardHeader>
           <CardContent>
@@ -108,13 +136,17 @@ export default function Dashboard() {
                   <XAxis dataKey="month" />
                   <YAxis />
                   <Tooltip />
-                  <Line type="monotone" dataKey="visits" stroke="#8884d8" strokeWidth={2} />
+                  <Line
+                    type="monotone"
+                    dataKey="visits"
+                    stroke="#8884d8"
+                    strokeWidth={2}
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </CardContent>
         </Card>
-
         <Card onClick={() => navigate("/senvelgo")}>
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="text-lg font-semibold">Performance Senvelgo</div>
@@ -122,26 +154,76 @@ export default function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
+              {/* Visites */}
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium text-gray-700">Visites</span>
+                  <div className="flex items-center">
+                    <span className="text-sm font-medium text-gray-700">
+                      Visites
+                    </span>
+                    <div className="ml-2 px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded-full">
+                      +5% vs mois dernier
+                    </div>
+                  </div>
                   <span className="text-sm font-medium text-gray-700">75%</span>
                 </div>
-                <Progress value={75} />
+                <Progress value={75} colorClass="bg-green-500" />
+                <div className="mt-1 text-xs text-gray-500">
+                  15 visites sur 20 planifiées
+                </div>
               </div>
+
+              {/* Commandes */}
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium text-gray-700">Commandes</span>
+                  <div className="flex items-center">
+                    <span className="text-sm font-medium text-gray-700">
+                      Commandes
+                    </span>
+                    <div className="ml-2 px-2 py-0.5 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                      -2% vs mois dernier
+                    </div>
+                  </div>
                   <span className="text-sm font-medium text-gray-700">62%</span>
                 </div>
-                <Progress value={62} />
+                <Progress value={62} colorClass="bg-yellow-500" />
+                <div className="mt-1 text-xs text-gray-500">
+                  31 commandes sur 50 attendues
+                </div>
               </div>
+
+              {/* Objectifs */}
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium text-gray-700">Objectifs</span>
+                  <div className="flex items-center">
+                    <span className="text-sm font-medium text-gray-700">
+                      Objectifs
+                    </span>
+                    <div className="ml-2 px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded-full">
+                      +8% vs mois dernier
+                    </div>
+                  </div>
                   <span className="text-sm font-medium text-gray-700">89%</span>
                 </div>
-                <Progress value={89} />
+                <Progress value={89} colorClass="bg-blue-500" />
+                <div className="mt-1 text-xs text-gray-500">
+                  8 objectifs sur 9 atteints
+                </div>
+              </div>
+
+              {/* Résumé mensuel */}
+              <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-600">
+                    Score Global
+                  </span>
+                  <div className="flex items-center">
+                    <span className="text-lg font-bold text-gray-900">
+                      75.3%
+                    </span>
+                    <span className="ml-2 text-sm text-green-600">↑ 3.2%</span>
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>

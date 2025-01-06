@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Target, Calendar, TrendingUp } from "lucide-react";
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
 
-const Card = ({ children, className = '' }) => (
-  <div className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 ${className}`}>
+const Card = ({ children, className = "" }) => (
+  <div
+    className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 ${className}`}
+  >
     {children}
   </div>
 );
@@ -24,7 +26,7 @@ const ProgressBar = ({ value, max = 100, colorClass = "bg-blue-500" }) => {
 const CircularProgress = ({ value, size = 120, strokeWidth = 8, color }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
-  const progress = Math.min(100, value);
+  const progress = Math.min(80, value);
   const offset = circumference - (progress / 100) * circumference;
 
   return (
@@ -50,7 +52,7 @@ const CircularProgress = ({ value, size = 120, strokeWidth = 8, color }) => {
           cy={size / 2}
           style={{
             strokeDasharray: circumference,
-            strokeDashoffset: offset
+            strokeDashoffset: offset,
           }}
         />
       </svg>
@@ -65,8 +67,8 @@ export default function ObjectifsMetierView() {
   const navigate = useNavigate();
 
   const profileData = {
-    nomDV: 'Agnes Hugain',
-    territoire: 'FR-AH-BU-PV-VI3-4',
+    nomDV: "Agnes Hugain",
+    territoire: "FR-AH-BU-PV-VI3-4",
     stats: {
       objectifDD: 337,
       objectifM: 300,
@@ -75,15 +77,19 @@ export default function ObjectifsMetierView() {
       maintenir: 313,
       totalDD: 311,
       avancementDD: 92.28,
-      avancementM: 104
+      avancementM: 104,
     },
-    tempsEcoule: 102.39
+    tempsEcoule: 102.39,
   };
 
   const pieData = [
-    { name: 'Développer', value: profileData.stats.developper, color: '#3b82f6' },
-    { name: 'Défendre', value: profileData.stats.defendre, color: '#ef4444' },
-    { name: 'Maintenir', value: profileData.stats.maintenir, color: '#10b981' }
+    {
+      name: "Développer",
+      value: profileData.stats.developper,
+      color: "#3b82f6",
+    },
+    { name: "Défendre", value: profileData.stats.defendre, color: "#ef4444" },
+    { name: "Maintenir", value: profileData.stats.maintenir, color: "#10b981" },
   ];
 
   return (
@@ -99,7 +105,9 @@ export default function ObjectifsMetierView() {
               <ArrowLeft className="h-5 w-5" />
             </button>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Objectifs Métier 2</h1>
+              <h1 className="text-xl font-bold text-gray-900">
+                Objectifs Métier 2
+              </h1>
               <p className="text-sm text-gray-500">{profileData.territoire}</p>
             </div>
           </div>
@@ -116,7 +124,11 @@ export default function ObjectifsMetierView() {
               <div className="flex flex-col items-center">
                 <CircularProgress
                   value={profileData.tempsEcoule}
-                  color={profileData.tempsEcoule > 100 ? "text-amber-500" : "text-green-500"}
+                  color={
+                    profileData.tempsEcoule > 100
+                      ? "text-amber-500"
+                      : "text-green-500"
+                  }
                 />
                 <div className="mt-2 text-center">
                   <div className="text-sm font-medium">Temps écoulé</div>
@@ -132,8 +144,13 @@ export default function ObjectifsMetierView() {
                     {profileData.stats.avancementDD}%
                   </span>
                 </div>
-                <ProgressBar value={profileData.stats.avancementDD} colorClass="bg-blue-500" />
-                <div className="text-xs text-gray-500 mt-1">vs 84.14% équipe</div>
+                <ProgressBar
+                  value={profileData.stats.avancementDD}
+                  colorClass="bg-blue-500"
+                />
+                <div className="text-xs text-gray-500 mt-1">
+                  vs 84.14% équipe
+                </div>
               </div>
 
               {/* Avancement M */}
@@ -144,8 +161,13 @@ export default function ObjectifsMetierView() {
                     {profileData.stats.avancementM}%
                   </span>
                 </div>
-                <ProgressBar value={profileData.stats.avancementM} colorClass="bg-green-500" />
-                <div className="text-xs text-gray-500 mt-1">vs 83.11% équipe</div>
+                <ProgressBar
+                  value={profileData.stats.avancementM}
+                  colorClass="bg-green-500"
+                />
+                <div className="text-xs text-gray-500 mt-1">
+                  vs 83.11% équipe
+                </div>
               </div>
             </div>
           </Card>
@@ -155,7 +177,9 @@ export default function ObjectifsMetierView() {
         <div className="w-2/3 space-y-6">
           {/* Répartition des activités */}
           <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Répartition des activités</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              Répartition des activités
+            </h3>
             <div className="flex">
               <div className="w-1/2">
                 <ResponsiveContainer width="100%" height={200}>
@@ -182,7 +206,10 @@ export default function ObjectifsMetierView() {
               <div className="w-1/2 flex items-center">
                 <div className="grid grid-cols-1 gap-3 w-full">
                   {pieData.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                    <div
+                      key={index}
+                      className="flex justify-between items-center p-2 bg-gray-50 rounded-lg"
+                    >
                       <span className="text-sm font-medium">{item.name}</span>
                       <span className="text-sm font-bold">{item.value}</span>
                     </div>
@@ -194,32 +221,59 @@ export default function ObjectifsMetierView() {
 
           {/* Objectifs et réalisations */}
           <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Objectifs et réalisations</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              Objectifs et réalisations
+            </h3>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-500">Objectif DD</span>
-                    <span className="text-sm font-bold">{profileData.stats.totalDD} / {profileData.stats.objectifDD}</span>
+                    <span className="text-sm font-medium text-gray-500">
+                      Objectif DD
+                    </span>
+                    <span className="text-sm font-bold">
+                      {profileData.stats.totalDD} /{" "}
+                      {profileData.stats.objectifDD}
+                    </span>
                   </div>
-                  <ProgressBar value={profileData.stats.totalDD} max={profileData.stats.objectifDD} />
+                  <ProgressBar
+                    value={profileData.stats.totalDD}
+                    max={profileData.stats.objectifDD}
+                  />
                 </div>
                 <div>
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-500">Objectif M</span>
-                    <span className="text-sm font-bold">{profileData.stats.maintenir} / {profileData.stats.objectifM}</span>
+                    <span className="text-sm font-medium text-gray-500">
+                      Objectif M
+                    </span>
+                    <span className="text-sm font-bold">
+                      {profileData.stats.maintenir} /{" "}
+                      {profileData.stats.objectifM}
+                    </span>
                   </div>
-                  <ProgressBar value={profileData.stats.maintenir} max={profileData.stats.objectifM} colorClass="bg-green-500" />
+                  <ProgressBar
+                    value={profileData.stats.maintenir}
+                    max={profileData.stats.objectifM}
+                    colorClass="bg-green-500"
+                  />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-sm font-medium text-gray-500">Total DD</div>
-                  <div className="text-xl font-bold mt-1">{profileData.stats.totalDD}</div>
+                  <div className="text-sm font-medium text-gray-500">
+                    Total DD
+                  </div>
+                  <div className="text-xl font-bold mt-1">
+                    {profileData.stats.totalDD}
+                  </div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-sm font-medium text-gray-500">Total M</div>
-                  <div className="text-xl font-bold mt-1">{profileData.stats.maintenir}</div>
+                  <div className="text-sm font-medium text-gray-500">
+                    Total M
+                  </div>
+                  <div className="text-xl font-bold mt-1">
+                    {profileData.stats.maintenir}
+                  </div>
                 </div>
               </div>
             </div>
