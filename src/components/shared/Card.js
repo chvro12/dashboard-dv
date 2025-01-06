@@ -28,3 +28,4 @@ export const Progress = ({ value, max = 100, colorClass = "bg-blue-500" }) => {
     </div>
   );
 };
+
